@@ -2,26 +2,21 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Library from "./Component/library";
+import './globals.css';
 
 interface Book {
   title: string;
   author: string;
-  publish_year: number | string;
-  isbn: null | string;
+  image: string
 }
 
 export default function Home() {
-  const [message, setMessage] = useState<Book>({
-    title: "",
-    author: "",
-    publish_year: "",
-    isbn: "",
-  });
+  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     axios
       .get("http://127.0.0.1:5000/")
-      .then((response) => setMessage(response.data.book))
+      .then((response) => setBooks(response.data.books))
       .catch((error) =>
         console.error("Error, data could not be reached", error)
       );
@@ -30,7 +25,7 @@ export default function Home() {
   return (
     <div>
       <h1>Visitor Page</h1>
-      <Library param={message} />
+      <Library param={books} />
     </div>
   );
 }
