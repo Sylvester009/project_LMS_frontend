@@ -13,7 +13,7 @@ const Library = ({ param }: { param: Book[] }) => {
           <div key={index}>
             <strong>Title:</strong> {book.title}
             <br />
-            <strong>Author:</strong> {book.author}
+            <strong>Auth:</strong> {book.author}
             <br/>
             {book.image && <img src={book.image} alt='book cover' />}
           </div>
